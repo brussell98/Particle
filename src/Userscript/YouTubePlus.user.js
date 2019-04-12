@@ -1547,11 +1547,11 @@
                         volumeWheel.cBottom.timer = window.setTimeout(hideVolume, 4000);
                     }
                     direction = event && (event.deltaY || event.wheelDeltaY);
-                    api.setVolume(player.volume * 100 - (Math.sign(direction) * 5));
+                    api.setVolume(api.getVolume() - (Math.sign(direction) * 5));
                 } else if (!event && user_settings.VID_VOL_WHEEL) {
-                    document.addEventListener("wheel", volumeWheel);
+                    document.addEventListener("wheel", volumeWheel, { passive: false });
                 } else if (window.location.pathname !== "/watch") {
-                    document.removeEventListener("wheel", volumeWheel);
+                    document.removeEventListener("wheel", volumeWheel, { passive: false });
                 }
             }
             function dragPopOut(event) {
